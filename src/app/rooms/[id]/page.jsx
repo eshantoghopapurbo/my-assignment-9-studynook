@@ -1,25 +1,34 @@
+import LibraryBooking from "@/components/BookNowDesigns";
 import Image from "next/image";
 
 
-const RoomDetailesPage =async ({params}) => {
-    const {id} = await params;
-    
-    const res = await fetch (`http://localhost:5000/rooms/${id}`)
+const RoomDetailesPage = async ({ params }) => {
+    const { id } = await params;
+
+    const res = await fetch(`http://localhost:5000/rooms/${id}`)
     const room = await res.json()
     console.log(room);
-     const { _id, roomName, description, imageUrl, floor, capacity, hourlyRate,amenities } = room;
+    const { _id, roomName, description, imageUrl, floor, capacity, hourlyRate, amenities } = room;
 
     return (
-       <div>
-         <div className="container mx-auto mt-10">
-          <Image src={imageUrl} 
-          alt="roomName"
-          width={800}
-          height={800}
-          ></Image>
-        </div>
+        <div>
 
-           <div className="p-6 flex-1 flex flex-col justify-between container mx-auto">
+
+            <div className="flex container mx-auto items-center justify-between">
+                <div className="mt-10">
+                    <Image src={imageUrl}
+                        alt="roomName"
+                        className="rounded-md"
+                        width={800}
+                        height={800}
+                    ></Image>
+                </div>
+                <div className="mr-30">
+                    <LibraryBooking></LibraryBooking>
+                </div>
+
+            </div>
+            <div className="p-6 flex-1 flex flex-col justify-between container mx-auto mb-600">
                 <div>
                     {/* Title & Credits */}
                     <div className="flex  items-start gap-130 mb-2">
@@ -38,15 +47,15 @@ const RoomDetailesPage =async ({params}) => {
 
                     {/* Dynamic Amenities Tags */}
                     <div className="flex items-center gap-140 mb-4">
-                      <p className='text-xl text-slate-500 '>{floor}</p>
-                       <p className='font-bold text-xl '>${hourlyRate}</p>
+                        <p className='text-xl text-slate-500 '>{floor}</p>
+                        <p className='font-bold text-xl '>${hourlyRate}</p>
                     </div>
 
                     <div className="flex flex-wrap gap-8 mb-5">
                         {amenities && amenities.length > 0 ? (
                             amenities.map((amenity, index) => (
-                                <span 
-                                    key={index} 
+                                <span
+                                    key={index}
                                     className="text-xs font-medium bg-slate-100 text-slate-800 px-2.5 py-1 rounded-md border border-slate-200"
                                 >
                                     {amenity}
@@ -56,11 +65,11 @@ const RoomDetailesPage =async ({params}) => {
                             <span className="text-xs text-slate-400 italic">No amenities available</span>
                         )}
                     </div>
-                   
+
                 </div>
-       </div>
-       </div>
-        
+            </div>
+        </div>
+
     );
 };
 
