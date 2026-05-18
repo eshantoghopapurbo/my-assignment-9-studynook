@@ -51,6 +51,27 @@ export default function Navbar() {
                         >
                             Rooms
                         </Link>
+                        <Link
+                            href="/addroom"
+                            onClick={() => setIsOpen(false)}
+                            className="text-gray-600 hover:text-[#0b2343] transition w-max"
+                        >
+                            Add Room
+                        </Link>
+                        <Link
+                            href="/mylistings"
+                            onClick={() => setIsOpen(false)}
+                            className="text-gray-600 hover:text-[#0b2343] transition w-max"
+                        >
+                             My Listings
+                        </Link>
+                        <Link
+                            href="/mybookings"
+                            onClick={() => setIsOpen(false)}
+                            className="text-gray-600 hover:text-[#0b2343] transition w-max"
+                        >
+                             My Bookings
+                        </Link>
                     </div>
 
                     {/* Buttons */}

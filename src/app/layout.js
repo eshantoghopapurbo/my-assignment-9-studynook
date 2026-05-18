@@ -3,6 +3,7 @@ import "./globals.css";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { ToastContainer } from "react-toastify";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col {inter.className}" >
         <Navbar></Navbar>
         {children}
+        <ToastContainer position="top-center" ></ToastContainer>
         <Footer></Footer>
         </body>
     </html>
