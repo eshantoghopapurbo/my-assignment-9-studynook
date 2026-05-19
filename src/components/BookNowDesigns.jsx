@@ -5,7 +5,7 @@ import React, { useState } from "react";
 export default function LibraryBooking() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
-  
+
   // State for modal inputs (TypeScript types removed)
   const [bookingData, setBookingData] = useState({
     date: "",
@@ -19,10 +19,10 @@ export default function LibraryBooking() {
   const calculateHours = (start, end) => {
     const [startHours, startMinutes] = start.split(":").map(Number);
     const [endHours, endMinutes] = end.split(":").map(Number);
-    
+
     const startTimeInMinutes = startHours * 60 + startMinutes;
     const endTimeInMinutes = endHours * 60 + endMinutes;
-    
+
     const durationInMinutes = endTimeInMinutes - startTimeInMinutes;
     return durationInMinutes > 0 ? parseFloat((durationInMinutes / 60).toFixed(1)) : 0;
   };
@@ -41,7 +41,7 @@ export default function LibraryBooking() {
       alert("End time must be after start time.");
       return;
     }
-    
+
     setBookingConfirmed(true);
     setTimeout(() => {
       setIsModalOpen(false);
@@ -50,18 +50,20 @@ export default function LibraryBooking() {
   };
 
   return (
-    <div className="flex items-center justify-center bg-gray-50 p-4">
-      
+    <div className="flex items-center justify-center bg-gray-50 p-4 ">
+
       {/* 1. Main Library Room Card Component */}
-      <div className="w-full max-w-sm overflow-hidden rounded-2xl bg-white shadow-lg border border-gray-100 transition-all hover:shadow-xl">
-        <div className="relative h-48 bg-gradient-to-tr from-emerald-600 to-teal-400 p-6 flex flex-col justify-end text-white">
+      <div className="w-[480] max-w-sm overflow-hidden rounded-2xl bg-white shadow-lg border border-gray-100 transition-all hover:shadow-xl">
+        <div className="relative h-48 bg-gradient-to-tr from-blue-600 to-blue-500 p-6 flex flex-col justify-end text-white">
           <span className="absolute top-4 right-4 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase">
-            Floor 3
+            floor
           </span>
-          <h2 className="text-2xl font-bold tracking-tight">Silent Study Suite</h2>
+          <div className="mb-10">
+            <h2 className="text-2xl font-bold tracking-tight">Silent Study Suite</h2>
           <p className="text-emerald-50 text-sm mt-1">Premium Collaborative Space</p>
+          </div>
         </div>
-        
+
         <div className="p-6">
           <div className="flex items-baseline justify-between mb-6">
             <div>
@@ -75,7 +77,7 @@ export default function LibraryBooking() {
 
           <button
             onClick={() => setIsModalOpen(true)}
-            className="w-full bg-emerald-600 text-white font-semibold py-3.5 px-4 rounded-xl shadow-md hover:bg-emerald-700 transition duration-200 active:scale-[0.98]"
+            className="w-full bg-white-600 text-bold  font-semibold py-3.5 px-4 rounded-xl shadow-md hover:bg-blue-500 transition duration-200 active:scale-[0.98]"
           >
             Book Now
           </button>
@@ -86,11 +88,11 @@ export default function LibraryBooking() {
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fadeIn">
           <div className="relative w-full max-w-md bg-white rounded-2xl p-6 shadow-2xl border border-gray-100 animate-slideUp">
-            
+
             {/* Modal Header */}
             <div className="flex items-center justify-between pb-4 mb-4 border-b border-gray-100">
               <h3 className="text-xl font-bold text-gray-900">Configure Booking</h3>
-              <button 
+              <button
                 onClick={() => setIsModalOpen(false)}
                 className="text-gray-400 hover:text-gray-600 p-1.5 rounded-lg hover:bg-gray-100 transition"
               >
@@ -110,7 +112,7 @@ export default function LibraryBooking() {
             ) : (
               /* Setup Form View */
               <form onSubmit={handleConfirmBooking} className="space-y-5">
-                
+
                 {/* Date Picker Input */}
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
@@ -163,7 +165,7 @@ export default function LibraryBooking() {
                     <span>Service Charge</span>
                     <span>£{bookingData.serviceCharge}</span>
                   </div>
-                  
+
                   <div className="flex justify-between items-baseline pt-3 border-t border-dashed border-gray-200">
                     <span className="text-base font-bold text-gray-900">Total Price</span>
                     <span className="text-2xl font-black text-gray-900">£{grandTotal}</span>
