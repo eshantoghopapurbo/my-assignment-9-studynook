@@ -1,4 +1,5 @@
 import LibraryBooking from "@/components/BookNowDesigns";
+import { DeleteAlert } from "@/components/DeleteAlert";
 import { EditModal } from "@/components/EditModal";
 import Image from "next/image";
 
@@ -16,8 +17,9 @@ const RoomDetailesPage = async ({ params }) => {
     <div className="flex flex-col lg:flex-row container mx-auto items-center lg:items-start justify-between gap-8 px-4 md:px-6 mt-6 md:mt-10">
         {/* Left Side: Edit Button & Image */}
         <div className="w-full lg:w-auto flex flex-col items-end lg:items-end">
-            <div className="mr-3">
+            <div className="mr-4 flex gap-4">
                 <EditModal room={room} />
+                <DeleteAlert room={room}  ></DeleteAlert>
             </div>
             <div className="w-full max-w-[800px] overflow-hidden rounded-md">
                 <Image 

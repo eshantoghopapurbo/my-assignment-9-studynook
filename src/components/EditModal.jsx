@@ -7,16 +7,15 @@ import { BiEdit } from "react-icons/bi";
 import { toast } from "react-toastify";
 
 export function EditModal({ room }) {
-    // 🌟 ব্যাকএন্ড থেকে আসা room অবজেক্টকে এখানে ডিস্ট্রাকচার করা হলো
-    const { 
-        _id, 
-        roomName = "", 
-        description = "", 
-        imageUrl = "", 
-        floor = "", 
-        capacity = "", 
-        hourlyRate = "", 
-        amenities = [] 
+    const {
+        _id,
+        roomName = "",
+        description = "",
+        imageUrl = "",
+        floor = "",
+        capacity = "",
+        hourlyRate = "",
+        amenities = []
     } = room || {};
 
     const amenityOptions = [
@@ -41,19 +40,19 @@ export function EditModal({ room }) {
             amenities: formData.getAll("amenities"),
         };
 
-         const res = await fetch(`http://localhost:5000/rooms/${_id}`, {
-                 method: "PATCH",
-                 headers: {
-                   "content-type": "application/json",
-                 },
-                 body: JSON.stringify(updatedData), // formData স্টেট পাঠানো হচ্ছে
-               });
-         
-               const data = await res.json();
-               console.log(data);
-               if (data) {
-                 toast.success("Room added successfully! 🎉");
-             };
+        const res = await fetch(`http://localhost:5000/rooms/${_id}`, {
+            method: "PATCH",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(updatedData), 
+        });
+
+        const data = await res.json();
+        console.log(data);
+        if (data) {
+            toast.success("Room added successfully! 🎉");
+        };
     };
     return (
         <Modal>
@@ -72,10 +71,10 @@ export function EditModal({ room }) {
                         <Modal.Body className="p-6">
                             <Surface variant="default">
                                 <form onSubmit={onSubmit} className="p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
-                                    
+
                                     {/* Left Column: Main Details */}
                                     <div className="lg:col-span-2 space-y-6">
-                                        
+
                                         {/* Room Name */}
                                         <div>
                                             <TextField isRequired type="text">
@@ -170,7 +169,7 @@ export function EditModal({ room }) {
                                                 <input
                                                     type="url"
                                                     name="imageUrl"
-                                                    defaultValue={imageUrl} // 🌟 ডিফল্ট ভ্যালু সেট করা হয়েছে
+                                                    defaultValue={imageUrl} 
                                                     placeholder="https://images.unsplash.com/..."
                                                     className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition duration-200"
                                                 />
@@ -186,7 +185,7 @@ export function EditModal({ room }) {
                                                 <input
                                                     type="text"
                                                     name="floor"
-                                                    defaultValue={floor} // 🌟 ডিফল্ট ভ্যালু সেট করা হয়েছে
+                                                    defaultValue={floor} 
                                                     placeholder="e.g., 2nd Floor"
                                                     className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition duration-200"
                                                 />
@@ -195,7 +194,7 @@ export function EditModal({ room }) {
 
                                         {/* Capacity & Hourly Rate */}
                                         <div className="grid grid-cols-2 gap-4">
-                                            
+
                                             {/* Capacity */}
                                             <div>
                                                 <TextField type="number">
@@ -208,7 +207,7 @@ export function EditModal({ room }) {
                                                         min="1"
                                                         defaultValue={capacity} // 
                                                         placeholder="4"
-                                                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition duration-200"
+                                                        className="w-full py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition duration-200"
                                                     />
                                                 </TextField>
                                             </div>
@@ -223,9 +222,9 @@ export function EditModal({ room }) {
                                                         type="number"
                                                         name="hourlyRate"
                                                         min="0"
-                                                        defaultValue={hourlyRate} // 🌟 ডিফল্ট ভ্যালু সেট করা হয়েছে
+                                                        defaultValue={hourlyRate}
                                                         placeholder="15.00"
-                                                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition duration-200"
+                                                        className="w-full  py-1.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition duration-200"
                                                     />
                                                 </TextField>
                                             </div>
@@ -234,8 +233,8 @@ export function EditModal({ room }) {
                                         {/* Action Buttons */}
                                         <div className="pt-4 space-y-3">
                                             <Modal.Footer>
-                            <Button type="submit" slot="close" variant="quiantity" className={"rounded-none w-full border-1 hover:bg-blue-500"}>Save</Button>
-                        </Modal.Footer>
+                                                <Button type="submit" slot="close" variant="quiantity" className={"rounded-none w-full border-1 hover:bg-blue-500"}>Save</Button>
+                                            </Modal.Footer>
                                         </div>
 
                                     </div>
