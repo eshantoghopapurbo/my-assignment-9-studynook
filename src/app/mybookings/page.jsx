@@ -1,14 +1,89 @@
 import React from 'react';
+import { Calendar, Clock, MapPin } from 'lucide-react'; 
 
-const MyBookings = () => {
+export default async function BookingCard() {
+    // ১. এখানে অবশ্যই একটি try-catch ব্লক রাখা ভালো যাতে API ডাউন থাকলে ক্র্যাশ না করে
+    let bookings = [];
+    try {
+        const res = await fetch('http://localhost:5000/mybookins', { cache: 'no-store' }); // Next.js এ লেটেস্ট ডেটা পাওয়ার জন্য
+        
+        // ২. এই যে এখানে 'await' যোগ করা হয়েছে (প্রধান ভুল)
+        bookings = await res.json(); 
+        
+        console.log(bookings, 'oo'); // এখন টার্মিনালে ঠিকঠাক ডেটা দেখতে পাবেন
+    } catch (error) {
+        console.error("Fetch error:", error);
+    }
+
+    // যদি ডেটা না থাকে বা খালি অ্যারে আসে
+    if (!bookings || bookings.length === 0) {
+        return <div className="text-gray-500">No bookings found.</div>;
+    }
+
     return (
-        <div className='container mx-auto'>
-           <div>
-             <h1 className='text-xl font-bold mt-10'>My Library Bookings</h1>
-             <p className='text-md text-gray-600'>Manage your reserved study spaces and review your past academic sessions <br /> in our curated environment.</p>
-           </div>
+       <div className="container mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-1 gap-6 max-w-7xl">
+            {/* ৩. লুপ চালিয়ে ডেটা ডাইনামিক করা হলো */}
+            {bookings.map((booking) => (
+                <div key={booking._id || booking.id} className="w-full bg-white border border-gray-100 rounded-2xl shadow-sm p-6 flex flex-col md:flex-row gap-6 font-sans">
+                  
+                  {/* Left Side: Image Container */}
+                  <div className="w-full md:w-[210px] h-[210px] bg-[#e5e5e0] rounded-xl p-3 flex items-center justify-center flex-shrink-0">
+                    <img 
+                      src={booking.imageUrl || "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=500"} 
+                      alt={booking.title} 
+                      className="w-full h-full object-cover rounded-xl"
+                    />
+                  </div>
+
+                  {/* Right Side: Content Details */}
+                  <div className="flex-1 flex flex-col justify-between">
+                    
+                    {/* Top Badges */}
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-1.5 bg-[#ebf7ed] text-[#2e7d32] text-xs font-semibold px-3 py-1 rounded-full border border-[#c8e6c9]">
+                        <span className="w-1.5 h-1.5 bg-[#2e7d32] rounded-full"></span>
+                        {booking.status || 'Confirmed'}
+                      </div>
+                      <span className="text-gray-500 text-xs font-medium tracking-wide">ID: {booking.bookingId || 'SN-49210'}</span>
+                    </div>
+
+                    {/* Title */}
+                    <h2 className="text-[#0b2545] text-2xl font-bold font-serif mb-3">
+                      {booking.roomName || 'The Alcott Reading Suite'}
+                    </h2>
+
+                    {/* Date and Time Info */}
+                    <div className="flex flex-wrap gap-x-6 gap-y-2 text-gray-600 text-sm font-medium mb-3">
+                      <div className="flex items-center gap-1.5">
+                        <Calendar size={16} className="text-gray-500" />
+                        <span>{booking.date || 'Oct 24, 2024'}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Clock size={16} className="text-gray-500" />
+                        <span>{booking.startTime || '09:00 AM - 12:00 PM'}</span> to 
+                        <span>{booking.endTime || '09:00 AM - 12:00 PM'}</span>
+                      </div>
+                    </div>
+
+                    {/* Location */}
+                    <div className="flex items-center gap-1.5 text-gray-600 text-sm font-medium mb-6">
+                      <MapPin size={16} className="text-gray-500" />
+                      <span>{booking.location || 'North Wing, Floor 3'}</span>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex justify-end gap-3 mt-auto">
+                      <button className="px-6 py-2.5 text-sm font-semibold text-black bg-white border border-black rounded-lg hover:bg-gray-50 transition-colors">
+                        Cancel Session
+                      </button>
+                      <button className="px-6 py-2.5 text-sm font-semibold text-white bg-[#944506] rounded-lg hover:bg-[#7c3a04] transition-colors">
+                        Modify Booking
+                      </button>
+                    </div>
+
+                  </div>
+                </div>
+            ))}
         </div>
     );
-};
-
-export default MyBookings;
+}
