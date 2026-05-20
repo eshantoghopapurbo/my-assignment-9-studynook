@@ -1,6 +1,7 @@
 
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
@@ -23,6 +24,11 @@ export default function AddRoomForm() {
     "Quiet Zone",
     "Air Conditioning",
   ];
+
+     const { data } = authClient.useSession();
+    const user = data?.user;
+  console.log("user data console ",user);
+
 
   // Handle text, number, and textarea inputs
   const handleChange = (e) => {
@@ -50,13 +56,12 @@ export default function AddRoomForm() {
         headers: {
           "content-type": "application/json",
         },
-        body: JSON.stringify(formData), // formData স্টেট পাঠানো হচ্ছে
+        body: JSON.stringify(formData), 
       });
       const data = await res.json();
       if (data) {
         toast.success("Room added successfully! 🎉");
         
-        // সফলভাবে অ্যাড হওয়ার পর ফর্ম রিসেট করার জন্য (ঐচ্ছিক)
         setFormData({
           roomName: "",
           description: "",
@@ -65,6 +70,8 @@ export default function AddRoomForm() {
           capacity: "",
           hourlyRate: "",
           amenities: [],
+          email : user?.email, 
+          name : user?.name
         });
       } else {
         toast.error("Room failed to add!");
@@ -74,6 +81,9 @@ export default function AddRoomForm() {
       toast.error("Something went wrong with the server!");
     }
   };
+
+
+
 
   return (
     <div className="min-h-screen bg-slate-50 py-8 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
@@ -253,7 +263,6 @@ export default function AddRoomForm() {
                 Cancel
               </button>
             </div>
-
           </div>
         </form>
       </div>

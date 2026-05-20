@@ -1,12 +1,12 @@
 
-"use client"; // 👈 Client interaction (search/filter) er jonno eta must!
+"use client";
 
 import AllRoomsCard from '@/components/AllRoomsCard';
 import React, { useState, useEffect } from 'react';
 
 const AllRoomsPage = () => {
     const filterAmenities = ["Whiteboard", "Projector", "Wi-Fi", "Power Outlets", "Quiet Zone", "AC"];
-    
+
     // States for data and filters
     const [allRooms, setAllRooms] = useState([]);
     const [filteredRooms, setFilteredRooms] = useState([]);
@@ -20,7 +20,7 @@ const AllRoomsPage = () => {
             .then(res => res.json())
             .then(data => {
                 setAllRooms(data);
-                setFilteredRooms(data); 
+                setFilteredRooms(data);
                 setLoading(false);
             })
             .catch(err => {
@@ -29,20 +29,19 @@ const AllRoomsPage = () => {
             });
     }, []);
 
-    // 2. Real-time Filter Logic (Search text ba Checkbox change holei eta run hobe)
     useEffect(() => {
         let tempRooms = [...allRooms];
 
         // A. Search Filter Logic (Room name onujayi)
         if (searchQuery.trim() !== "") {
-            tempRooms = tempRooms.filter(room => 
+            tempRooms = tempRooms.filter(room =>
                 room.roomName.toLowerCase().includes(searchQuery.toLowerCase())
             );
         }
 
         // B. Amenities Checkbox Filter Logic
         if (selectedAmenities.length > 0) {
-            tempRooms = tempRooms.filter(room => 
+            tempRooms = tempRooms.filter(room =>
                 // Check korbe selected sob amenities oi room-er bhetor ache কিনা
                 selectedAmenities.every(amenity => room.amenities?.includes(amenity))
             );
@@ -72,7 +71,7 @@ const AllRoomsPage = () => {
 
     return (
         <div className="max-w-7xl mx-auto px-6 py-10 bg-[#F8FAFC] min-h-screen font-sans">
-      
+
             {/* Top Header */}
             <div className="mb-10">
                 <h1 className="text-3xl font-extrabold text-[#0A2540] tracking-tight mb-2">Available Study Rooms</h1>
@@ -81,11 +80,11 @@ const AllRoomsPage = () => {
 
             {/* Main Content Layout Container */}
             <div className="flex flex-col lg:flex-row gap-8">
-                
+
                 {/* ================= LEFT SIDEBAR FILTER ================= */}
                 <div className="w-full lg:w-[280px] bg-white p-6 rounded-xl border border-slate-200 h-fit shadow-sm shrink-0">
                     <h2 className="text-lg font-bold text-[#0A2540] mb-5">Filters</h2>
-                    
+
                     {/* Search Input */}
                     <div className="mb-6">
                         <label className="text-xs font-bold text-slate-600 block mb-2 tracking-wide uppercase">Search Rooms</label>
@@ -95,11 +94,11 @@ const AllRoomsPage = () => {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
                             </span>
-                            <input 
-                                type="text" 
+                            <input
+                                type="text"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)} // 👈 Connect with State
-                                placeholder="Room name..." 
+                                placeholder="Room name..."
                                 className="w-full pl-9 pr-4 py-2.5 border border-slate-300 rounded-lg text-sm bg-[#FAFAFA] focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all placeholder-slate-400 text-slate-700"
                             />
                         </div>
@@ -111,11 +110,11 @@ const AllRoomsPage = () => {
                         <div className="space-y-3.5">
                             {filterAmenities.map((amenity, index) => (
                                 <label key={index} className="flex items-center text-sm font-medium text-slate-600 cursor-pointer select-none group">
-                                    <input 
-                                        type="checkbox" 
+                                    <input
+                                        type="checkbox"
                                         checked={selectedAmenities.includes(amenity)}
                                         onChange={() => handleAmenityChange(amenity)} // 👈 Connect with Function
-                                        className="w-4 h-4 text-teal-600 border-slate-300 rounded focus:ring-teal-500/30 accent-[#0F766E] cursor-pointer" 
+                                        className="w-4 h-4 text-teal-600 border-slate-300 rounded focus:ring-teal-500/30 accent-[#0F766E] cursor-pointer"
                                     />
                                     <span className="ml-3 group-hover:text-slate-900 transition-colors">{amenity}</span>
                                 </label>
@@ -124,7 +123,7 @@ const AllRoomsPage = () => {
                     </div>
 
                     {/* Clear Button */}
-                    <button 
+                    <button
                         onClick={handleClearFilters} // 👈 Connect with Function
                         className="w-full py-2.5 px-4 border-2 border-[#0F766E] text-[#0F766E] text-sm font-bold rounded-lg hover:bg-teal-50/50 transition-colors duration-200"
                     >
@@ -133,13 +132,13 @@ const AllRoomsPage = () => {
                 </div>
 
                 {/* ================= RIGHT SIDE - ALL ROOMS CARD GRID ================= */}
-                <div className="flex-1"> 
+                <div className="flex-1">
                     <div className="mb-6">
                         <h2 className="text-xl font-bold text-[#0A2540]">
                             All Rooms ({filteredRooms.length})
                         </h2>
                     </div>
-                    
+
                     {/* Jodi search result faka hoy */}
                     {filteredRooms.length === 0 ? (
                         <div className="text-center py-20 bg-white border border-dashed border-slate-300 rounded-xl">

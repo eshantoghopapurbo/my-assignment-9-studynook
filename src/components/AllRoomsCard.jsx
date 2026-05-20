@@ -10,13 +10,11 @@ const AllRoomsCard = ({ room }) => {
     return (
         <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300 w-full max-w-[480px]">
 
-            <div className="relative w-full h-[240px] overflow-hidden rounded-t-xl">
+            <div className="relative w-full h-[240px] overflow-hidden rounded-t-xl  object-cover">
                 <Image
                     src={imageUrl}
                     alt={roomName}
-                    fill // 👈 Eta use korle image automatic parent div er soman hobe
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // 👈 Sothik resolution load korar jonno
-                    style={{ objectFit: 'cover' }} // 👈 Image stretch na hoye perfect bhabe fit hobe
+                    fill 
                     className="select-none transition-transform duration-300 hover:scale-105"
                 />
             </div>

@@ -1,13 +1,13 @@
+
 import AllRoomsCard from '@/components/AllRoomsCard';
 import { Button } from '@heroui/react';
 import Link from 'next/link';
 import { GoArrowRight } from 'react-icons/go';
 
 
-const FeautersSection = async() => {
+ const FeautersSection = async() => {
     const res =await fetch (`http://localhost:5000/feautersection`)
     const rooms =await res.json();
-    console.log(rooms);
     return (
         <div className='container mx-auto '>
          <div className='px-4 md:px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-8'>

@@ -12,7 +12,7 @@ export default function Navbar() {
     const user = data?.user;
     const router = useRouter();
 
-    console.log(user, 'navbar');
+    // console.log(user, 'navbar');
 
     const [isOpen, setIsOpen] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);

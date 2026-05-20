@@ -1,8 +1,14 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import React, { useState } from "react";
 
-export default function LibraryBooking() {
+export default function LibraryBooking({room}) {
+   const { _id, roomName, description, imageUrl, floor, capacity, hourlyRate, amenities } = room;
+   
+    const { data:session } = authClient.useSession();
+        const user = session?.user;
+        console.log(user ,"user");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
 
@@ -31,6 +37,25 @@ export default function LibraryBooking() {
   const totalRoomPrice = totalHours * bookingData.hourlyRate;
   const grandTotal = totalRoomPrice > 0 ? totalRoomPrice + bookingData.serviceCharge : 0;
 
+
+  const handleBooking = async () => {
+      const bookingData ={
+        userId:user.id,
+        userImage:user.image,
+        userName:user.name,
+        destinationId:_id,
+        roomName,
+        description,
+        imageUrl,
+        floor,
+        capacity,
+        hourlyRate,
+        amenities,
+    }
+    console.log(bookingData);
+    }
+    
+
   const handleConfirmBooking = (e) => {
     e.preventDefault();
     if (!bookingData.date) {
@@ -41,12 +66,14 @@ export default function LibraryBooking() {
       alert("End time must be after start time.");
       return;
     }
-
     setBookingConfirmed(true);
     setTimeout(() => {
       setIsModalOpen(false);
       setBookingConfirmed(false);
     }, 2000);
+      
+
+
   };
 
   return (
@@ -175,8 +202,7 @@ export default function LibraryBooking() {
                 {/* Action Buttons */}
                 <div className="pt-2">
                   <button
-                    type="submit"
-                    disabled={totalHours <= 0}
+                   onClick={handleBooking}
                     className="w-full bg-orange-500 text-white font-semibold py-3.5 px-4 rounded-xl shadow-md hover:bg-orange-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     Confirm Booking

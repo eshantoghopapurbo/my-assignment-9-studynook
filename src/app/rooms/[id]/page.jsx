@@ -8,9 +8,7 @@ const RoomDetailesPage = async ({ params }) => {
 
     const res = await fetch(`http://localhost:5000/rooms/${id}`)
     const room = await res.json()
-    console.log(room);
     const { _id, roomName, description, imageUrl, floor, capacity, hourlyRate, amenities } = room;
-
     return (
      <div>
     {/* Top Section: Image and Booking Card */}
@@ -35,7 +33,7 @@ const RoomDetailesPage = async ({ params }) => {
 
         {/* Right Side: Booking Component */}
         <div className="w-full lg:w-auto min-w-[300px] sm:min-w-[350px] lg:max-w-[600px] lg:mt-30">
-            <LibraryBooking />
+            <LibraryBooking room={room} />
         </div>
     </div>
 
