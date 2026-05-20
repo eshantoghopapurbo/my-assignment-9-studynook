@@ -16,7 +16,12 @@ import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-toastify";
 
-const RegisterPage = () => {
+const RegisterPage = () => {  
+      const handleGoogleSignIn =async()=>{
+      await authClient.signIn.social({
+    provider: "google",
+  });
+  }
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -46,12 +51,6 @@ const RegisterPage = () => {
         window.location.href = "/";
       }, 1500);
     }
-
-    const handleGoogleSignIn =async()=>{
-      await authClient.signIn.social({
-    provider: "google",
-  });
-  }
   };
 
   return (
@@ -214,7 +213,7 @@ const RegisterPage = () => {
             <Button
                onClick={handleGoogleSignIn}
               variant="bordered"
-              className="w-full mt-5 mb-5 rounded-none hover:bg-blue-500"
+              className="w-full mt-5 mb-5 border-1 rounded-none hover:bg-blue-500"
             >
               <FcGoogle />
               Login with Google

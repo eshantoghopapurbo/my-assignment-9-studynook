@@ -9,16 +9,6 @@ const AllRoomsCard = ({ room }) => {
     const { _id, roomName, description, imageUrl, floor, capacity, hourlyRate, amenities } = room;
     return (
         <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300 w-full max-w-[480px]">
-            {/* <div>
-                <Image
-               className="select-none transition-transform duration-300 hover:scale-105" 
-                 alt={roomName}
-                src={imageUrl}
-                height={600}
-                width={500}
-                style={{ objectFit: 'cover' }}
-                ></Image>
-              </div> */}
 
             <div className="relative w-full h-[240px] overflow-hidden rounded-t-xl">
                 <Image

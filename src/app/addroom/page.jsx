@@ -43,9 +43,7 @@ export default function AddRoomForm() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
     console.log("Submitting Room Data:", formData);
-
     try {
       const res = await fetch("http://localhost:5000/addroom", {
         method: "POST",
@@ -54,7 +52,6 @@ export default function AddRoomForm() {
         },
         body: JSON.stringify(formData), // formData স্টেট পাঠানো হচ্ছে
       });
-
       const data = await res.json();
       if (data) {
         toast.success("Room added successfully! 🎉");
