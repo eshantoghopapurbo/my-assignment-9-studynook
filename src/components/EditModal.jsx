@@ -51,7 +51,7 @@ export function EditModal({ room }) {
         const data = await res.json();
         console.log(data);
         if (data) {
-            toast.success("Room added successfully! 🎉");
+            toast.success("Room Edit successfully! 🎉");
         };
     };
     return (

@@ -5,6 +5,7 @@ import { DeleteIcon } from "lucide-react";
 import { redirect } from "next/navigation";
 
 import { RiDeleteBin7Line } from "react-icons/ri";
+import { toast } from "react-toastify";
 
 export function DeleteAlert({room}) {
     const {_id,roomName} =room;
@@ -17,8 +18,11 @@ export function DeleteAlert({room}) {
             }
         })
         const data = await res.json ();
-        redirect("/rooms")
-        console.log(data);
+         if(data){
+          toast.success("Room Delete successfully! 🎉")
+            redirect("/rooms")
+         }
+       
     }
   return (
     <AlertDialog>

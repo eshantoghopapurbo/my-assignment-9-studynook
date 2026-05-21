@@ -166,15 +166,15 @@ export default function Navbar() {
                                     <Link
                                         href="/login"
                                         onClick={() => setIsOpen(false)}
-                                        className=" bg-[#0b2343] text-white px-5 py-2 rounded-lg hover:bg-[#13345f] transition font-medium text-center"
+                                        className=" bg-white text-bold px-5 py-2 rounded-lg  hover:bg-blue-500  transition font-medium text-center"
                                     >
                                         Login
                                     </Link>
-
+ 
                                     <Link
                                         href="/register"
                                         onClick={() => setIsOpen(false)}
-                                        className="bg-[#0b2343] text-white px-5 py-2 rounded-lg hover:bg-[#13345f] transition font-medium text-center"
+                                        className="bg-white font-bold px-5 py-2 rounded-lg hover:bg-blue-500 transition font-medium text-center"
                                     >
                                         Register
                                     </Link>
