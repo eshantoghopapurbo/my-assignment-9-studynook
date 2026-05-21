@@ -1,6 +1,7 @@
 
 import HeroBanner from "@/components/HeroBanner";
 import FeautersSection from "./feautersection/page";
+import StudyNook from "@/components/StudyNook";
 
 
 export default function Home() {
@@ -8,6 +9,7 @@ export default function Home() {
      <>
      <HeroBanner></HeroBanner>
      <FeautersSection></FeautersSection>
+      <StudyNook></StudyNook>
      </>
   );
 }

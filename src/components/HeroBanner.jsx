@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function HeroBanner() {
   return (
-    <section className="relative bg-[#f8fafc] py-16 px-4 sm:px-6 lg:px-8 min-h-[600px] flex items-center overflow-hidden">
+    <section className="relative  py-16 px-4 sm:px-6 lg:px-8 min-h-[600px] flex items-center overflow-hidden">
       <div className="container mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         <div className="lg:col-span-6 space-y-6 text-left z-10">

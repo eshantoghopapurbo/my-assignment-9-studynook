@@ -70,7 +70,7 @@ const AllRoomsPage = () => {
     }
 
     return (
-        <div className="max-w-7xl mx-auto px-6 py-10 bg-[#F8FAFC] min-h-screen font-sans">
+        <div className="max-w-7xl mx-auto px-6 py-10  min-h-screen font-sans">
 
             {/* Top Header */}
             <div className="mb-10">

@@ -173,40 +173,7 @@ import { IoMdMail } from "react-icons/io";
 
 export default function Footer() {
     return (
-        <footer className="bg-[#f8f9fb] pt-12 md:pt-20">
-
-            {/* Top CTA Section */}
-            <div className="w-full bg-[#022654] px-6 sm:px-12 md:px-20 lg:px-24 xl:px-32 py-12 md:py-20 flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-12">
-
-                {/* Left Content */}
-                <div className="w-full lg:max-w-xl text-center lg:text-left flex flex-col items-center lg:items-start">
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 md:mb-6">
-                        Host Your Space
-                    </h2>
-
-                    <p className="text-[#9fb5d1] text-base md:text-lg leading-relaxed md:leading-9 mb-8 md:mb-10">
-                        Have an empty office, a private desk, or a group room?
-                        List it on StudyNook and help others find their focus
-                        while earning extra income.
-                    </p>
-
-                    <Link
-                        href="/rooms/add"
-                        className="inline-flex items-center gap-3 bg-[#1a7b7b] hover:bg-[#156666] text-white px-6 py-3.5 md:px-8 md:py-4 rounded-xl font-semibold transition w-full sm:w-auto justify-center"
-                    >
-                        List Your Room
-                        <span className="text-xl md:text-2xl">+</span>
-                    </Link>
-                </div>
-
-                {/* Right Icon - Perfectly Responsive & Fluid */}
-                <div className="hidden lg:flex items-center justify-center bg-[#173a6a] lg:w-[400px] xl:w-[520px] lg:h-[300px] xl:h-[380px] rounded-[30px] shrink-0 transition-all duration-300">
-                    <div className="lg:text-[150px] xl:text-[220px] text-[#294a77] font-thin select-none">
-                        🚪
-                    </div>
-                </div>
-
-            </div>
+        <footer className="bg-[#eceff2]pt-12 md:pt-20 mt-5">
 
             {/* Bottom Footer */}
             <div className="container mx-auto px-4 sm:px-6 py-12 md:py-16">

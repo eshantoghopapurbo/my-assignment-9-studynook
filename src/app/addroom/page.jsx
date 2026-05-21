@@ -6,15 +6,20 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 
 export default function AddRoomForm() {
-  const [formData, setFormData] = useState({
-    roomName: "",
-    description: "",
-    imageUrl: "",
-    floor: "",
-    capacity: "",
-    hourlyRate: "",
-    amenities: [],
-  });
+
+  const { data } = authClient.useSession();
+ const user = data?.user;
+console.log("user data console ",user);
+
+const [formData, setFormData] = useState({
+  roomName: "",
+  description: "",
+  imageUrl: "",
+  floor: "",
+  capacity: "",
+  hourlyRate: "",
+  amenities: [],
+});
 
   const amenityOptions = [
     "Whiteboard",
@@ -25,9 +30,6 @@ export default function AddRoomForm() {
     "Air Conditioning",
   ];
 
-     const { data } = authClient.useSession();
-    const user = data?.user;
-  console.log("user data console ",user);
 
 
   // Handle text, number, and textarea inputs
@@ -47,40 +49,53 @@ export default function AddRoomForm() {
     });
   };
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    console.log("Submitting Room Data:", formData);
-    try {
-      const res = await fetch("http://localhost:5000/addroom", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(formData), 
-      });
-      const data = await res.json();
-      if (data) {
-        toast.success("Room added successfully! 🎉");
-        
-        setFormData({
-          roomName: "",
-          description: "",
-          imageUrl: "",
-          floor: "",
-          capacity: "",
-          hourlyRate: "",
-          amenities: [],
-          email : user?.email, 
-          name : user?.name
-        });
-      } else {
-        toast.error("Room failed to add!");
-      }
-    } catch (error) {
-      console.error(error);
-      toast.error("Something went wrong with the server!");
-    }
+ const onSubmit = async (e) => {
+  e.preventDefault();
+
+  // login user + form data merge
+  const roomData = {
+    ...formData,
+    name: user?.name || "",
+    email: user?.email || "",
+    capacity: Number(formData.capacity),
+    hourlyRate: Number(formData.hourlyRate),
   };
+
+  console.log("Submitting:", roomData);
+
+  try {
+    const res = await fetch("http://localhost:5000/addroom", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(roomData),
+    });
+
+    const data = await res.json();
+
+    if (data?.insertedId) {
+      toast.success("Room added successfully 🎉");
+
+      setFormData({
+        roomName: "",
+        description: "",
+        imageUrl: "",
+        floor: "",
+        capacity: "",
+        hourlyRate: "",
+        amenities: [],
+      });
+
+    } else {
+      toast.error("Room failed to add!");
+    }
+
+  } catch (error) {
+    console.error(error);
+    toast.error("Something went wrong with server!");
+  }
+};
 
 
 

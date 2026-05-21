@@ -18,14 +18,14 @@ export default function Navbar() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const handleLogout = async () => {
         await authClient.signOut({
-  fetchOptions: {
-    onSuccess: () => {
-      router.push("/login"); // redirect to login page
-    },
-  },
-});
+            fetchOptions: {
+                onSuccess: () => {
+                    router.push("/login"); // redirect to login page
+                },
+            },
+        });
     };
-    
+
 
     return (
         <nav className="w-full border-b border-gray-200 bg-[#f7f8fa] relative z-50">
@@ -73,31 +73,31 @@ export default function Navbar() {
                         </Link>
 
 
-                       {
-                        user && <>
-                         <Link
-                            href="/addroom"
-                            onClick={() => setIsOpen(false)}
-                            className="text-gray-600 hover:text-[#0b2343] transition w-max"
-                        >
-                            Add Room
-                        </Link>
-                        <Link
-                            href="/mylistings"
-                            onClick={() => setIsOpen(false)}
-                            className="text-gray-600 hover:text-[#0b2343] transition w-max"
-                        >
-                            My Listings
-                        </Link>
-                        <Link
-                            href="/mybookings"
-                            onClick={() => setIsOpen(false)}
-                            className="text-gray-600 hover:text-[#0b2343] transition w-max"
-                        >
-                            My Bookings
-                        </Link>
-                        </>
-                       }
+                        {
+                            user && <>
+                                <Link
+                                    href="/addroom"
+                                    onClick={() => setIsOpen(false)}
+                                    className="text-gray-600 hover:text-[#0b2343] transition w-max"
+                                >
+                                    Add Room
+                                </Link>
+                                <Link
+                                    href="/mylistings"
+                                    onClick={() => setIsOpen(false)}
+                                    className="text-gray-600 hover:text-[#0b2343] transition w-max"
+                                >
+                                    My Listings
+                                </Link>
+                                <Link
+                                    href="/mybookings"
+                                    onClick={() => setIsOpen(false)}
+                                    className="text-gray-600 hover:text-[#0b2343] transition w-max"
+                                >
+                                    My Bookings
+                                </Link>
+                            </>
+                        }
 
 
                     </div>

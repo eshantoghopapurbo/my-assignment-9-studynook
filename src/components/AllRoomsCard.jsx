@@ -14,7 +14,8 @@ const AllRoomsCard = ({ room }) => {
                 <Image
                     src={imageUrl}
                     alt={roomName}
-                    fill 
+                    width={600}
+                    height={400}
                     className="select-none transition-transform duration-300 hover:scale-105"
                 />
             </div>

@@ -12,8 +12,10 @@ const MyListings  =async () => {
     headers: await headers()
   });
   const user =session?.user
-    const res =await fetch (`http://localhost:5000/mylisting?email=${user.email}`)
+  console.log(user);
+    const res =await fetch (`http://localhost:5000/mylisting?email=${user?.email}`)
     const mylistings =await res.json();
+     console.log(mylistings,"jsdkldsklfsd");
     return (
          <div className="container mx-auto mt-10 ">
            <div className="flex justify-between items-center">
