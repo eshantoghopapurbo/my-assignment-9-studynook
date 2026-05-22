@@ -179,7 +179,7 @@ const AllRoomsPage = () => {
 
     // 1. API theke data load kora
     useEffect(() => {
-        fetch("http://localhost:5000/rooms")
+        fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/rooms`)
             .then(res => res.json())
             .then(data => {
                 setAllRooms(data);
