@@ -76,8 +76,15 @@ const handledelete = async (id) => {
 };
 
   return (
-    <div className="container mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-1 gap-6 max-w-7xl">
+    <div>
+      <div className="container mx-auto max-w-6xl mt-10 ">
+        <h1 className="text-xl font-bold">My Library Bookings</h1>
+        <p className="text-md text-gray-500">Manage your reserved study spaces and review your past academic <br>
+        </br> sessions in our curated environment.</p>
+      </div>
+    <div className="container mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-1 gap-6 max-w-6xl">
       {bookings.map((booking) => (
+
         <div
           key={booking._id || booking.id}
           className="w-full bg-white border border-gray-100 rounded-2xl shadow-sm p-6 flex flex-col md:flex-row gap-6 font-sans"
@@ -148,6 +155,7 @@ const handledelete = async (id) => {
           </div>
         </div>
       ))}
+    </div>
     </div>
   );
 }

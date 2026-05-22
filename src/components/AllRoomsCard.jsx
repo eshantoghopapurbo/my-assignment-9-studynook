@@ -10,13 +10,13 @@ const AllRoomsCard = ({ room }) => {
     return (
         <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300 w-full max-w-[480px]">
 
-            <div className="relative w-full h-[240px] overflow-hidden rounded-t-xl  object-cover">
+            <div className="relative w-full h-[240px] overflow-hidden rounded-t-xl  ">
                 <Image
                     src={imageUrl}
                     alt={roomName}
                     width={600}
-                    height={400}
-                    className="select-none transition-transform duration-300 hover:scale-105"
+                    height={400}    
+                    className="select-none transition-transform duration-300 hover:scale-105 object-cover"
                 />
             </div>
             {/* Content Section */}
