@@ -129,7 +129,6 @@ const [formData, setFormData] = useState({
                 required
                 value={formData.roomName}
                 onChange={handleChange}
-                placeholder="e.g., The Turing Suite"
                 className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition duration-200"
               />
             </div>
@@ -225,7 +224,6 @@ const [formData, setFormData] = useState({
                 name="floor"
                 value={formData.floor}
                 onChange={handleChange}
-                placeholder="e.g., 2nd Floor"
                 className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition duration-200"
               />
             </div>

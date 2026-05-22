@@ -64,7 +64,6 @@ export default function GenericBookingForm({ room }) {
                 alt={roomName} 
                 width={100}
                 height={100}
-                // className="w-16 h-16 object-cover rounded-lg border border-gray-200" 
               />
             )}
             <div>
@@ -74,7 +73,7 @@ export default function GenericBookingForm({ room }) {
           </div>
         </div>
 
-        {/* মেইন ফর্ম */}
+        
         <form onSubmit={submitdata} className="space-y-4">
           
           <div className="grid grid-cols-2 gap-4 ">
