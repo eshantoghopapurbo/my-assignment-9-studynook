@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const RoomDetailesPage = async ({ params }) => {
     const { id } = await params;
-    const res = await fetch(`http://localhost:5000/rooms/${id}`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/rooms/${id}`)
     const room = await res.json()
        console.log(room)
     const { _id, roomName, description, imageUrl, floor, capacity, hourlyRate, amenities } = room;

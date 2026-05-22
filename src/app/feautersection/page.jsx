@@ -6,7 +6,7 @@ import { GoArrowRight } from 'react-icons/go';
 
 
  const FeautersSection = async() => {
-    const res =await fetch (`http://localhost:5000/feautersection`)
+    const res = await fetch (`${process.env.NEXT_PUBLIC_SERVER_URL}/feautersection`)
     const rooms =await res.json();
     return (
         <div className='container mx-auto '>
@@ -15,8 +15,6 @@ import { GoArrowRight } from 'react-icons/go';
              <h1 className='text-xl font-bold'>Latest Available Rooms</h1>
           <p className='text-md font-bold text-gray-500'>Hand-picked spaces for high-efficiency study sessions.</p>
          </div>
-            
-         
             <div>
                <Link href={"/rooms"}> <Button variant="outline" className='border-1 text-md rounded-none hover:bg-blue-400'>  <GoArrowRight />View All Rooms</Button></Link>
             </div>

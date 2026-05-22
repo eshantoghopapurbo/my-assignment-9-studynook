@@ -64,7 +64,7 @@ const [formData, setFormData] = useState({
   console.log("Submitting:", roomData);
 
   try {
-    const res = await fetch("http://localhost:5000/addroom", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/addroom`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -19,7 +19,7 @@ export default function BookingCard() {
     const getBookings = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/mybookins?email=${user?.email}`
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/mybookins?email=${user?.email}`
         );
 
         const data = await res.json();
@@ -54,7 +54,7 @@ export default function BookingCard() {
 const handledelete = async (id) => {
   try {
     const res = await fetch(
-      `http://localhost:5000/mybookins/${id}`,
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/mybookins/${id}`,
       {
         method: "DELETE",
       }

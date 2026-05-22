@@ -13,7 +13,7 @@ const MyListings  =async () => {
   });
   const user =session?.user
   console.log(user);
-    const res =await fetch (`http://localhost:5000/mylisting?email=${user?.email}`)
+    const res =await fetch (`${process.env.NEXT_PUBLIC_SERVER_URL}/mylisting?email=${user?.email}`)
     const mylistings =await res.json();
      console.log(mylistings,"jsdkldsklfsd");
     return (

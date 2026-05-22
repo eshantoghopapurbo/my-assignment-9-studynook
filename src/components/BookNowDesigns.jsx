@@ -29,7 +29,7 @@ export default function GenericBookingForm({ room }) {
     
 
     try {
-      const response = await fetch("http://localhost:5000/mybookins", {
+      const response = await fetch("${process.env.NEXT_PUBLIC_SERVER_URL}/mybookins", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
